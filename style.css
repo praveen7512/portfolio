@@ -34,3 +34,18 @@ footer{text-align:center;padding:40px;font-size:13px;border-top:1px solid var(--
 .reveal{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
 @media(max-width:760px){.burger{display:block}.links{display:none;position:absolute;top:62px;right:0;left:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}.links.open{display:flex}.links a{display:block;padding:14px 32px}section{padding:72px 8px}.projects{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+.carousel{position:relative;overflow:hidden;border-radius:14px;background:var(--card);border:1px solid var(--line);margin-top:1rem}
+.carousel .track{display:flex;transition:transform .6s ease}
+.carousel .slide{min-width:100%;margin:0;display:flex;flex-direction:column;align-items:center}
+.carousel img{width:100%;height:480px;object-fit:contain;background:#0b0e14}
+.carousel figcaption{padding:.7rem 1rem 2.2rem;color:#cbd5e1;font-size:.95rem;text-align:center}
+.cbtn{position:absolute;top:45%;transform:translateY(-50%);background:rgba(0,0,0,.55);color:#fff;border:0;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+.cbtn:hover{background:rgba(0,0,0,.8)}.prev{left:10px}.next{right:10px}
+.dots{position:absolute;bottom:10px;width:100%;display:flex;justify-content:center;gap:8px}
+.dots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.35);cursor:pointer;padding:0}
+.dots button.on{background:var(--acc);width:22px;border-radius:5px}
+@media(max-width:600px){.carousel img{height:340px}}
+.live-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-weight:600;font-size:14px;margin:.4rem 0}
+.dot-live{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e}
+.live-btn{display:inline-block;margin:.3rem 0 .6rem;padding:9px 18px;border-radius:10px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;font-weight:600;font-size:14px}

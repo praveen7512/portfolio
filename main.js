@@ -35,3 +35,13 @@
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
+
+(function(){const c=document.getElementById('carousel');if(!c)return;const t=c.querySelector('.track'),n=t.children.length,d=c.querySelector('.dots');let i=0,tm;
+for(let k=0;k<n;k++){const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(k+1));b.onclick=()=>{go(k);re()};d.appendChild(b)}
+function go(k){i=(k+n)%n;t.style.transform=`translateX(-${i*100}%)`;[...d.children].forEach((b,j)=>b.classList.toggle('on',j===i))}
+function play(){stop();tm=setInterval(()=>go(i+1),3500)}function stop(){clearInterval(tm)}function re(){play()}
+c.querySelector('.prev').onclick=()=>{go(i-1);re()};c.querySelector('.next').onclick=()=>{go(i+1);re()};
+c.addEventListener('mouseenter',stop);c.addEventListener('mouseleave',play);
+let x0=null;c.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;stop()},{passive:true});
+c.addEventListener('touchend',e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1))}x0=null;play()});
+go(0);play()})();
