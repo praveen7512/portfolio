@@ -49,3 +49,20 @@ footer{text-align:center;padding:40px;font-size:13px;border-top:1px solid var(--
 .live-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-weight:600;font-size:14px;margin:.4rem 0}
 .dot-live{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e}
 .live-btn{display:inline-block;margin:.3rem 0 .6rem;padding:9px 18px;border-radius:10px;background:linear-gradient(90deg,var(--acc),var(--acc2));color:#fff;font-weight:600;font-size:14px}
+/* Netflix-style row */
+.carousel{background:none;border:0;border-radius:0;overflow:hidden;padding:28px 0 8px;margin-top:.6rem}
+.carousel .track{display:flex;gap:14px;transition:transform .7s cubic-bezier(.2,.7,.2,1);padding:18px 4px}
+.carousel .slide{flex:0 0 calc((100% - 3*14px)/4);min-width:0;position:relative;border-radius:10px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:transform .35s,box-shadow .35s;cursor:pointer}
+.carousel .slide:hover{transform:scale(1.07);z-index:2;box-shadow:0 18px 40px #000a}
+.carousel img{width:100%;height:340px;object-fit:contain;background:#0b0e14;display:block}
+.carousel figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(transparent,#000d);color:#fff;font-weight:600;font-size:14px;text-align:left;opacity:.85;transition:opacity .3s}
+.carousel .slide:hover figcaption{opacity:1}
+.cbtn{top:28px;bottom:8px;height:auto;transform:none;width:44px;border-radius:0;background:linear-gradient(90deg,#000c,transparent);opacity:0;transition:opacity .3s;z-index:3;font-size:1.6rem}
+.next{background:linear-gradient(270deg,#000c,transparent)}
+.carousel:hover .cbtn{opacity:1}.carousel.at-start .prev,.carousel.at-end .next{opacity:0!important;pointer-events:none}
+.prev{left:0}.next{right:0}
+.dots{top:6px;bottom:auto;right:6px;width:auto;justify-content:flex-end;gap:4px}
+.dots button{width:14px;height:3px;border-radius:2px;background:#ffffff40}
+.dots button.on{width:14px;height:3px;border-radius:2px;background:var(--txt)}
+@media(max-width:900px){.carousel .slide{flex-basis:calc((100% - 14px)/2.3)}}
+@media(max-width:600px){.carousel .slide{flex-basis:70%}.carousel img{height:300px}.cbtn{display:none}}

@@ -36,12 +36,12 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
-(function(){const c=document.getElementById('carousel');if(!c)return;const t=c.querySelector('.track'),n=t.children.length,d=c.querySelector('.dots');let i=0,tm;
-for(let k=0;k<n;k++){const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(k+1));b.onclick=()=>{go(k);re()};d.appendChild(b)}
-function go(k){i=(k+n)%n;t.style.transform=`translateX(-${i*100}%)`;[...d.children].forEach((b,j)=>b.classList.toggle('on',j===i))}
-function play(){stop();tm=setInterval(()=>go(i+1),3500)}function stop(){clearInterval(tm)}function re(){play()}
-c.querySelector('.prev').onclick=()=>{go(i-1);re()};c.querySelector('.next').onclick=()=>{go(i+1);re()};
+(function(){const c=document.getElementById('carousel');if(!c)return;const t=c.querySelector('.track'),cards=[...t.children],d=c.querySelector('.dots');let p=0,tm,pages=1,per=1;
+function layout(){per=Math.max(1,Math.floor(c.clientWidth/cards[0].offsetWidth+0.01));pages=Math.ceil(cards.length/per);d.innerHTML='';for(let k=0;k<pages;k++){const b=document.createElement('button');b.setAttribute('aria-label','Page '+(k+1));b.onclick=()=>{go(k);play()};d.appendChild(b)}go(Math.min(p,pages-1))}
+function go(k){p=(k+pages)%pages;const gap=parseFloat(getComputedStyle(t).gap)||0,w=cards[0].offsetWidth+gap;let x=p*per*w;const max=t.scrollWidth-c.clientWidth;t.style.transform=`translateX(-${Math.max(0,Math.min(x,max))}px)`;[...d.children].forEach((b,j)=>b.classList.toggle('on',j===p));c.classList.toggle('at-start',p===0);c.classList.toggle('at-end',p===pages-1)}
+function play(){stop();tm=setInterval(()=>go(p+1),4000)}function stop(){clearInterval(tm)}
+c.querySelector('.prev').onclick=()=>{go(p-1);play()};c.querySelector('.next').onclick=()=>{go(p+1);play()};
 c.addEventListener('mouseenter',stop);c.addEventListener('mouseleave',play);
 let x0=null;c.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;stop()},{passive:true});
-c.addEventListener('touchend',e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(i+(dx<0?1:-1))}x0=null;play()});
-go(0);play()})();
+c.addEventListener('touchend',e=>{if(x0!==null){const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(p+(dx<0?1:-1))}x0=null;play()});
+addEventListener('resize',layout);addEventListener('load',layout);layout();play()})();
