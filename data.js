@@ -16,7 +16,7 @@ window.PORTFOLIO = {
   github: "https://github.com/praveen7512",
   githubUser: "praveen7512",
   linkedin: "https://www.linkedin.com/in/praveen-sahu-1821861ba",
-  resume: "",
+  resume: "assets/Praveen_Sahu_Resume.pdf",
 
   experience: [
     { title: "SDE 1 – Android", company: "Instamart (Swiggy)", period: "Jul 2025 – Present", points: [
